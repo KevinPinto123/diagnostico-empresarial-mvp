@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEXUS CEO - IA Empresarial LATAM | CLOUNID</title>
+    <meta
+      name="description"
+      content="La primera plataforma de IA en LATAM que convierte emprendedores en CEOs expertos. Powered by Huawei Cloud."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="es">
+          <span class="flag">🇪🇸</span>
+          <span class="lang-text">ES</span>
+        </button>
+        <button class="lang-btn" data-lang="en">
+          <span class="flag">🇺🇸</span>
+          <span class="lang-text">EN</span>
+        </button>
+        <button class="lang-btn" data-lang="qu">
+          <span class="flag">🏔️</span>
+          <span class="lang-text">QU</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <span class="logo-text">NEXUS</span>
+          <span class="logo-accent">CEO</span>
+        </div>
+        <div class="nav-menu">
+          <a href="#inicio" class="nav-link" data-translate="nav-home"
+            >Inicio</a
+          >
+          <a
+            href="#caracteristicas"
+            class="nav-link"
+            data-translate="nav-features"
+            >Características</a
+          >
+          <a href="#beneficios" class="nav-link" data-translate="nav-benefits"
+            >Beneficios</a
+          >
+          <a href="#demo" class="nav-link cta-nav" data-translate="nav-demo"
+            >Probar Demo</a
+          >
+        </div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+      <div class="hero-background">
+        <div class="gradient-overlay"></div>
+        <div class="floating-elements">
+          <div class="floating-element"></div>
+          <div class="floating-element"></div>
+          <div class="floating-element"></div>
+        </div>
+      </div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-trophy"></i>
+            <span data-translate="hero-badge">Hackathon Huawei 2025</span>
+          </div>
+          <h1 class="hero-title" data-translate="hero-title">
+            Convierte tu <span class="gradient-text">Startup</span> en una
+            <span class="gradient-text">Máquina de Éxito</span>
+          </h1>
+          <p class="hero-subtitle" data-translate="hero-subtitle">
+            La primera plataforma de IA en LATAM que democratiza el conocimiento
+            empresarial de élite. Powered by <strong>Huawei Cloud</strong> y
+            <strong>Gemini AI</strong>.
+          </p>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number">85%</span>
+              <span class="stat-label" data-translate="stat-precision"
+                >Precisión en predicciones</span
+              >
+            </div>
+            <div class="stat">
+              <span class="stat-number">70%</span>
+              <span class="stat-label" data-translate="stat-success"
+                >Tasa de éxito</span
+              >
+            </div>
+            <div class="stat">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label" data-translate="stat-available"
+                >Asesoría disponible</span
+              >
+            </div>
+          </div>
+          <div class="hero-cta">
+            <button class="cta-primary" onclick="openDemo()">
+              <i class="fas fa-rocket"></i>
+              <span data-translate="cta-demo">Probar Demo Gratis</span>
+            </button>
+            <button class="cta-secondary">
+              <i class="fas fa-play"></i>
+              <span data-translate="cta-video">Ver Video</span>
+            </button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-image-container">
+            <img
+              src="centro.png"
+              alt="NEXUS CEO AI"
+              class="hero-center-image"
+            />
+            <div class="floating-circles">
+              <div class="circle circle-1"></div>
+              <div class="circle circle-2"></div>
+              <div class="circle circle-3"></div>
+              <div class="circle circle-4"></div>
+              <div class="circle circle-5"></div>
+              <div class="circle circle-6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Features Section -->
+    <section id="caracteristicas" class="features">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" data-translate="features-title">
+            El Cerebro Colectivo de los Mejores CEOs
+          </h2>
+          <p class="section-subtitle" data-translate="features-subtitle">
+            No es solo un chatbot más. Es tener la experiencia de Jeff Bezos,
+            Elon Musk y los mejores CEOs trabajando para ti.
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3 data-translate="feature1-title">Análisis Empresarial 360°</h3>
+            <p data-translate="feature1-desc">
+              Evaluación completa de tu negocio con la precisión de los mejores
+              analistas del mundo.
+            </p>
+            <div class="feature-tech">
+              <span class="tech-badge">Gemini AI</span>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 data-translate="feature2-title">Predicciones en Tiempo Real</h3>
+            <p data-translate="feature2-desc">
+              Anticipa tendencias de mercado y oportunidades con 85% de
+              precisión.
+            </p>
+            <div class="feature-tech">
+              <span class="tech-badge">Huawei Cloud</span>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h3 data-translate="feature3-title">
+              Planes de Acción Automatizados
+            </h3>
+            <p data-translate="feature3-desc">
+              Estrategias personalizadas basadas en miles de casos de éxito
+              empresarial.
+            </p>
+            <div class="feature-tech">
+              <span class="tech-badge" data-translate="tech-advanced"
+                >IA Avanzada</span
+              >
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 data-translate="feature4-title">Alertas Preventivas</h3>
+            <p data-translate="feature4-desc">
+              Te avisa 60 días antes de crisis financieras para que puedas
+              actuar a tiempo.
+            </p>
+            <div class="feature-tech">
+              <span class="tech-badge" data-translate="tech-predictive"
+                >Predictivo</span
+              >
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <h3 data-translate="feature5-title">Autenticación Segura</h3>
+            <p data-translate="feature5-desc">
+              Sistema de autenticación robusto que protege tus datos
+              empresariales con encriptación de nivel bancario.
+            </p>
+            <div class="feature-tech">
+              <span class="tech-badge" data-translate="tech-security"
+                >Seguridad</span
+              >
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3 data-translate="feature6-title">Asistente IA Personalizado</h3>
+            <p data-translate="feature6-desc">
+              Tu CEO virtual que aprende de tu industria y adapta sus
+              recomendaciones a tu modelo de negocio específico.
+            </p>
+            <div class="feature-tech">
+              <span class="tech-badge" data-translate="tech-personalized"
+                >Personalizado</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="beneficios" class="benefits">
+      <div class="container">
+        <div class="benefits-content">
+          <div class="benefits-text">
+            <h2 class="section-title">De Intuición a Inteligencia</h2>
+            <p class="section-subtitle">
+              Transforma tu forma de tomar decisiones empresariales
+            </p>
+            <div class="comparison">
+              <div class="before">
+                <h4><i class="fas fa-times-circle"></i> Antes (Intuición)</h4>
+                <ul>
+                  <li>Decisiones "a ciegas"</li>
+                  <li>17% tasa de éxito promedio LATAM</li>
+                  <li>Reaccionar a crisis</li>
+                  <li>Conocimiento limitado</li>
+                </ul>
+              </div>
+              <div class="after">
+                <h4><i class="fas fa-check-circle"></i> Después (NEXUS CEO)</h4>
+                <ul>
+                  <li>Decisiones basadas en datos</li>
+                  <li>+70% tasa de éxito</li>
+                  <li>Prevenir crisis 60 días antes</li>
+                  <li>Conocimiento de élite 24/7</li>
+                </ul>
+              </div>
+            </div>
+            <div class="powered-by">
+              <span>Powered by</span>
+              <div class="tech-logos">
+                <div class="tech-logo">Huawei Cloud</div>
+                <div class="tech-logo">Gemini AI</div>
+              </div>
+            </div>
+          </div>
+          <div class="benefits-visual">
+            <div class="success-chart">
+              <div class="chart-container">
+                <div class="chart-bar before-bar">
+                  <span class="bar-value">17%</span>
+                  <span class="bar-label">Antes</span>
+                </div>
+                <div class="chart-arrow">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="chart-bar after-bar">
+                  <span class="bar-value">70%</span>
+                  <span class="bar-label">Con NEXUS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" data-translate="team-title">
+            Desarrollador
+          </h2>
+          <p class="section-subtitle" data-translate="team-subtitle">
+            Innovador comprometido con democratizar el éxito empresarial en
+            LATAM
+          </p>
+        </div>
+        <div class="developer-card">
+          <div class="developer-avatar">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <div class="developer-info">
+            <h3>Kevin Pinto</h3>
+            <p data-translate="developer-role">
+              Fundador & Desarrollador Principal
+            </p>
+            <p data-translate="developer-desc">
+              Creador de NEXUS CEO, especialista en IA y desarrollo de
+              soluciones empresariales innovadoras.
+            </p>
+          </div>
+        </div>
+        <div class="team-badge">
+          <i class="fas fa-award"></i>
+          <span data-translate="team-badge"
+            >Participante Hackathon Huawei 2025</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+      <div class="container">
+        <div class="demo-content">
+          <h2 class="section-title" data-translate="demo-title">
+            ¿Listo para Revolucionar tu Negocio?
+          </h2>
+          <p class="section-subtitle" data-translate="demo-subtitle">
+            Experimenta el poder de tener los mejores CEOs del mundo como tus
+            asesores personales
+          </p>
+          <div class="demo-showcase">
+            <div class="demo-visual">
+              <div class="demo-screen">
+                <div class="demo-header">
+                  <div class="demo-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <span class="demo-title-bar">NEXUS CEO Dashboard</span>
+                </div>
+                <div class="demo-body">
+                  <div class="demo-chat">
+                    <div class="chat-message ai">
+                      <i class="fas fa-robot"></i>
+                      <span data-translate="demo-message"
+                        >Analicemos tu startup. Veo potencial de crecimiento del
+                        340%...</span
+                      >
+                    </div>
+                  </div>
+                  <div class="demo-metrics">
+                    <div class="metric">
+                      <span class="metric-value">85%</span>
+                      <span class="metric-label" data-translate="demo-metric1"
+                        >Precisión</span
+                      >
+                    </div>
+                    <div class="metric">
+                      <span class="metric-value">24/7</span>
+                      <span class="metric-label" data-translate="demo-metric2"
+                        >Disponible</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-cta-section">
+              <button class="cta-primary demo-btn" onclick="openDemo()">
+                <i class="fas fa-rocket"></i>
+                <span data-translate="demo-cta">Probar Demo</span>
+              </button>
+              <div class="demo-features">
+                <div class="demo-feature">
+                  <i class="fas fa-clock"></i>
+                  <span data-translate="demo-free">Demo gratuita</span>
+                </div>
+                <div class="demo-feature">
+                  <i class="fas fa-shield-alt"></i>
+                  <span data-translate="demo-secure">Acceso seguro</span>
+                </div>
+                <div class="demo-feature">
+                  <i class="fas fa-mobile-alt"></i>
+                  <span data-translate="demo-responsive">Multiplataforma</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <span class="logo-text">NEXUS</span>
+              <span class="logo-accent">CEO</span>
+            </div>
+            <p>Democratizando el éxito empresarial en LATAM</p>
+          </div>
+          <div class="footer-tech">
+            <h4>Tecnología</h4>
+            <ul>
+              <li>Huawei Cloud</li>
+              <li>Gemini AI</li>
+              <li>Machine Learning</li>
+            </ul>
+          </div>
+          <div class="footer-team">
+            <h4 data-translate="footer-developer">Desarrollador</h4>
+            <p>Kevin Pinto</p>
+            <p data-translate="footer-hackathon">Hackathon Huawei 2025</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p data-translate="footer-rights">
+            &copy; 2025 NEXUS CEO by Kevin Pinto. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Chatbot Flotante -->
+    <div class="chatbot-container" id="chatbotContainer">
+      <div class="chatbot-header">
+        <div class="chatbot-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="chatbot-info">
+          <h4 data-translate="chatbot-title">NEXUS CEO Assistant</h4>
+          <span class="chatbot-status online" data-translate="chatbot-status"
+            >En línea</span
+          >
+        </div>
+        <button class="chatbot-minimize" onclick="toggleChatbot()">
+          <i class="fas fa-minus"></i>
+        </button>
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot-message">
+          <div class="message-avatar">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="message-content">
+            <p data-translate="chatbot-welcome">
+              ¡Hola! Soy NEXUS CEO, tu asistente de IA empresarial. Puedo
+              ayudarte con análisis de negocio, estrategias y recomendaciones.
+              ¿Qué te gustaría saber?
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="chatbot-input">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="chatbotInput"
+            data-translate-placeholder="chatbot-placeholder"
+            placeholder="Pregúntame sobre tu negocio..."
+          />
+          <button onclick="sendChatMessage()" id="sendButton">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+        <div class="quick-suggestions">
+          <button
+            class="suggestion-btn"
+            onclick="askSuggestion('¿Cómo puedo hacer crecer mi startup?')"
+          >
+            💡 Crecimiento
+          </button>
+          <button
+            class="suggestion-btn"
+            onclick="askSuggestion('¿Qué estrategias de marketing recomiendas?')"
+          >
+            📈 Marketing
+          </button>
+          <button
+            class="suggestion-btn"
+            onclick="askSuggestion('¿Cómo conseguir inversión?')"
+          >
+            💰 Inversión
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chatbot Toggle Button Mejorado -->
+    <div class="chatbot-float-container">
+      <button
+        class="chatbot-toggle-improved"
+        onclick="openDemo()"
+        id="chatbotToggle"
+      >
+        <div class="chatbot-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="chatbot-text">
+          <span class="chatbot-title">NEXUS CEO</span>
+          <span class="chatbot-subtitle">¡Prueba el Demo!</span>
+        </div>
+        <div class="chatbot-arrow">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

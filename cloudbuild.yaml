@@ -1,0 +1,17 @@
+# Configuración para Huawei Cloud Build
+steps:
+  # Construir imagen Docker
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'nexus-ceo:latest', '.']
+  
+  # Desplegar a Huawei Cloud
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'nexus-ceo:latest']
+
+# Configuración de timeout
+timeout: '1200s'
+
+# Opciones adicionales
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: 'E2_HIGHCPU_8'

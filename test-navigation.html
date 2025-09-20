@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Navigation - NEXUS CEO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .test-btn {
+            background: #DC2626;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .test-btn:hover {
+            background: #B91C1C;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de Navegación NEXUS CEO</h1>
+    
+    <div class="status" id="status">
+        Listo para probar navegación
+    </div>
+    
+    <div>
+        <button class="test-btn" onclick="testIndexToLogin()">
+            Test: Index → Login
+        </button>
+        
+        <button class="test-btn" onclick="testLoginToIndex()">
+            Test: Login → Index
+        </button>
+        
+        <button class="test-btn" onclick="testDemoLogin()">
+            Test: Demo Login
+        </button>
+        
+        <button class="test-btn" onclick="testFullFlow()">
+            Test: Flujo Completo
+        </button>
+    </div>
+    
+    <div>
+        <button class="test-btn" onclick="clearStorage()">
+            Limpiar Storage
+        </button>
+        
+        <button class="test-btn" onclick="checkStorage()">
+            Ver Storage
+        </button>
+    </div>
+
+    <script>
+        function updateStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.style.background = type === 'success' ? '#059669' : 
+                                    type === 'error' ? '#DC2626' : '#333';
+        }
+        
+        function testIndexToLogin() {
+            updateStatus('Probando navegación Index → Login...');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        }
+        
+        function testLoginToIndex() {
+            updateStatus('Probando navegación Login → Index...');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1000);
+        }
+        
+        function testDemoLogin() {
+            updateStatus('Simulando login demo...');
+            
+            // Simular usuario demo
+            const demoUser = {
+                id: 'demo-user-test',
+                email: 'demo@nexusceo.com',
+                name: 'Demo User',
+                created_at: new Date().toISOString()
+            };
+            
+            localStorage.setItem('nexus-user', JSON.stringify(demoUser));
+            localStorage.setItem('nexus-login-time', new Date().toISOString());
+            
+            updateStatus('Usuario demo creado. Redirigiendo a chatbot...', 'success');
+            
+            setTimeout(() => {
+                window.location.href = 'chatbot.html';
+            }, 2000);
+        }
+        
+        function testFullFlow() {
+            updateStatus('Iniciando flujo completo...');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        }
+        
+        function clearStorage() {
+            localStorage.removeItem('nexus-user');
+            localStorage.removeItem('nexus-login-time');
+            localStorage.removeItem('nexus-analysis');
+            updateStatus('Storage limpiado', 'success');
+        }
+        
+        function checkStorage() {
+            const user = localStorage.getItem('nexus-user');
+            const analysis = localStorage.getItem('nexus-analysis');
+            
+            let message = 'Storage:\n';
+            message += user ? '✅ Usuario logueado\n' : '❌ Sin usuario\n';
+            message += analysis ? '✅ Análisis guardado\n' : '❌ Sin análisis\n';
+            
+            updateStatus(message);
+        }
+    </script>
+</body>
+</html>

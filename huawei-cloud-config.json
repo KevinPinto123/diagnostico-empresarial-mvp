@@ -1,0 +1,58 @@
+{
+  "project": {
+    "name": "nexus-ceo",
+    "description": "NEXUS CEO - Plataforma de IA Empresarial LATAM",
+    "region": "ap-southeast-1",
+    "version": "1.0.0"
+  },
+  "services": {
+    "compute": {
+      "type": "ECS",
+      "instance_type": "s6.large.2",
+      "image": "Ubuntu 20.04",
+      "disk_size": "40GB"
+    },
+    "database": {
+      "type": "RDS",
+      "engine": "PostgreSQL",
+      "version": "13.0",
+      "instance_class": "rds.pg.s1.medium"
+    },
+    "storage": {
+      "type": "OBS",
+      "bucket_name": "nexus-ceo-assets",
+      "storage_class": "STANDARD"
+    },
+    "cdn": {
+      "type": "CDN",
+      "domain": "nexus-ceo.huaweicloud.com",
+      "cache_ttl": 3600
+    },
+    "monitoring": {
+      "type": "CES",
+      "metrics": ["CPU", "Memory", "Network", "Disk"],
+      "alerts": true
+    }
+  },
+  "security": {
+    "ssl": true,
+    "firewall": {
+      "inbound_rules": [
+        {"port": 80, "protocol": "HTTP"},
+        {"port": 443, "protocol": "HTTPS"},
+        {"port": 8080, "protocol": "HTTP"}
+      ]
+    },
+    "backup": {
+      "enabled": true,
+      "frequency": "daily",
+      "retention": "30 days"
+    }
+  },
+  "scaling": {
+    "auto_scaling": true,
+    "min_instances": 1,
+    "max_instances": 5,
+    "cpu_threshold": 70
+  }
+}

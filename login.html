@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - NEXUS CEO</title>
+    <meta name="description" content="Accede a NEXUS CEO - La plataforma de IA empresarial más avanzada de LATAM">
+    <link rel="stylesheet" href="login-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="es">
+                <span class="flag">🇪🇸</span>
+                <span class="lang-text">ES</span>
+            </button>
+            <button class="lang-btn" data-lang="en">
+                <span class="flag">🇺🇸</span>
+                <span class="lang-text">EN</span>
+            </button>
+            <button class="lang-btn" data-lang="qu">
+                <span class="flag">🏔️</span>
+                <span class="lang-text">QU</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Background Elements -->
+    <div class="login-background">
+        <div class="gradient-overlay"></div>
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="login-container">
+        <!-- Left Side - Branding -->
+        <div class="login-brand">
+            <div class="brand-content">
+                <div class="logo-container">
+                    <img src="logo.png" alt="NEXUS CEO" class="brand-logo">
+                    <div class="brand-text">
+                        <h1>NEXUS <span class="brand-accent">CEO</span></h1>
+                        <p data-translate="brand-tagline">Tu CEO Virtual Inteligente</p>
+                    </div>
+                </div>
+                <div class="brand-features">
+                    <div class="feature-item">
+                        <i class="fas fa-brain"></i>
+                        <span data-translate="feature-ai">IA Empresarial Avanzada</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span data-translate="feature-secure">Seguridad Bancaria</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span data-translate="feature-analytics">Análisis Predictivo</span>
+                    </div>
+                </div>
+                <div class="hackathon-badge">
+                    <i class="fas fa-trophy"></i>
+                    <span data-translate="hackathon-badge">Hackathon Huawei 2025</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="login-form-container">
+            <div class="login-form">
+                <div class="back-button-container">
+                    <button class="back-btn" onclick="goBackToIndex()">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Volver al Inicio</span>
+                    </button>
+                </div>
+                <div class="form-header">
+                    <h2 data-translate="login-title">Iniciar Sesión</h2>
+                    <p data-translate="login-subtitle">Accede a tu plataforma de IA empresarial</p>
+                    <div class="demo-credentials">
+                        <p><strong>Demo:</strong> Usa cualquier email válido y contraseña de 6+ caracteres</p>
+                        <p><em>Ejemplo: demo@nexusceo.com / password123</em></p>
+                    </div>
+                </div>
+
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="email" data-translate="email-label">Correo Electrónico</label>
+                        <div class="input-container">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" required data-translate-placeholder="email-placeholder">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" data-translate="password-label">Contraseña</label>
+                        <div class="input-container">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" name="password" required data-translate-placeholder="password-placeholder">
+                            <button type="button" class="toggle-password" onclick="togglePassword()">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="remember">
+                            <span class="checkmark"></span>
+                            <span data-translate="remember-me">Recordarme</span>
+                        </label>
+                        <a href="#" class="forgot-password" data-translate="forgot-password">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span data-translate="login-btn">Iniciar Sesión</span>
+                    </button>
+                    
+                    <button type="button" class="demo-login-btn" onclick="quickDemoLogin()">
+                        <i class="fas fa-rocket"></i>
+                        <span>Acceso Demo Rápido</span>
+                    </button>
+                </form>
+
+                <div class="divider">
+                    <span data-translate="or-continue">O continúa con</span>
+                </div>
+
+                <div class="social-login">
+                    <button class="social-btn google-btn" onclick="loginWithGoogle()">
+                        <i class="fab fa-google"></i>
+                        <span data-translate="google-login">Google</span>
+                    </button>
+                    <button class="social-btn github-btn" onclick="loginWithGithub()">
+                        <i class="fab fa-github"></i>
+                        <span data-translate="github-login">GitHub</span>
+                    </button>
+                </div>
+
+                <div class="signup-link">
+                    <span data-translate="no-account">¿No tienes cuenta?</span>
+                    <a href="#" data-translate="signup-link">Regístrate aquí</a>
+                </div>
+
+                <div class="developer-credit">
+                    <p data-translate="developed-by">Desarrollado por <strong>Kevin Pinto</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="login-script.js"></script>
+</body>
+</html>

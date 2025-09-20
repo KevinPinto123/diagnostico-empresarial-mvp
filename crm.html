@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS CEO - CRM Dashboard</title>
+    <link rel="stylesheet" href="crm-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="crm-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logo.png" alt="NEXUS CEO" class="header-logo">
+                <div class="logo-text">
+                    <span class="logo-main">NEXUS</span>
+                    <span class="logo-accent">CEO</span>
+                </div>
+            </div>
+            <div class="header-center">
+                <h1>Dashboard Empresarial</h1>
+                <p>Análisis Inteligente de tu Negocio</p>
+            </div>
+            <div class="header-actions">
+                <button class="action-btn" onclick="goBackToChat()">
+                    <i class="fas fa-comments"></i>
+                    <span>Volver al Chat</span>
+                </button>
+                <button class="action-btn logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Salir</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-section">
+                <h3><i class="fas fa-tachometer-alt"></i> Panel Principal</h3>
+                <ul class="sidebar-menu">
+                    <li class="menu-item active" data-section="overview">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Resumen General</span>
+                    </li>
+                    <li class="menu-item" data-section="analysis">
+                        <i class="fas fa-brain"></i>
+                        <span>Análisis IA</span>
+                    </li>
+                    <li class="menu-item" data-section="metrics">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Métricas</span>
+                    </li>
+                    <li class="menu-item" data-section="recommendations">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Recomendaciones</span>
+                    </li>
+                    <li class="menu-item" data-section="reports">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Reportes</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3><i class="fas fa-cogs"></i> Herramientas</h3>
+                <ul class="sidebar-menu">
+                    <li class="menu-item" onclick="exportData()">
+                        <i class="fas fa-download"></i>
+                        <span>Exportar Datos</span>
+                    </li>
+                    <li class="menu-item" onclick="scheduleReport()">
+                        <i class="fas fa-calendar"></i>
+                        <span>Programar Reporte</span>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Overview Section -->
+            <div class="dashboard-section active" id="overview">
+                <div class="section-header">
+                    <h2>Resumen General</h2>
+                    <div class="header-actions">
+                        <button class="refresh-btn" onclick="refreshData()">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KPI Cards -->
+                <div class="kpi-grid">
+
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3 id="revenueKPI">$0</h3>
+                            <p>Ingresos Mensuales</p>
+                            <span class="kpi-trend positive">
+                                <i class="fas fa-arrow-up"></i> +12%
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3 id="customersKPI">0</h3>
+                            <p>Clientes Potenciales</p>
+                            <span class="kpi-trend positive">
+                                <i class="fas fa-arrow-up"></i> +8%
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-target"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3 id="conversionKPI">0%</h3>
+                            <p>Tasa de Conversión</p>
+                            <span class="kpi-trend neutral">
+                                <i class="fas fa-minus"></i> 0%
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3 id="growthKPI">0%</h3>
+                            <p>Crecimiento Proyectado</p>
+                            <span class="kpi-trend positive">
+                                <i class="fas fa-arrow-up"></i> +25%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <h3>Proyección de Ingresos</h3>
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Distribución de Ingresos</h3>
+                        <canvas id="revenueDistributionChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Additional Metrics Row -->
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-pie-chart"></i> Participación de Mercado</h3>
+                        </div>
+                        <canvas id="marketChart"></canvas>
+                        <div class="chart-insights">
+                            <div class="insight-item">
+                                <span class="insight-label">Tu posición:</span>
+                                <span class="insight-value" id="marketPosition">Creciendo</span>
+                            </div>
+                            <div class="insight-item">
+                                <span class="insight-label">Oportunidad:</span>
+                                <span class="insight-value positive">+25% potencial</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-heart"></i> Satisfacción del Cliente</h3>
+                        </div>
+                        <canvas id="satisfactionChart"></canvas>
+                        <div class="satisfaction-metrics">
+                            <div class="satisfaction-item">
+                                <span class="satisfaction-label">NPS Score:</span>
+                                <span class="satisfaction-value positive" id="npsScore">+42</span>
+                            </div>
+                            <div class="satisfaction-item">
+                                <span class="satisfaction-label">Retención:</span>
+                                <span class="satisfaction-value" id="retentionRate">87%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Analytics Row -->
+                <div class="analytics-row">
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-brain"></i> Análisis Predictivo IA</h3>
+                        <div class="prediction-content" id="aiPredictions">
+                            <!-- Se llenará dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Summary -->
+                <div class="business-summary">
+                    <h3>Resumen de tu Negocio</h3>
+                    <div class="summary-content" id="businessSummaryContent">
+                        <!-- Se llenará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Section -->
+            <div class="dashboard-section" id="analysis">
+                <div class="section-header">
+                    <h2>Análisis de IA</h2>
+                </div>
+                <div class="analysis-content" id="analysisContent">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Metrics Section -->
+            <div class="dashboard-section" id="metrics">
+                <div class="section-header">
+                    <h2>Métricas Detalladas</h2>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h4>Rendimiento Financiero</h4>
+                        <canvas id="financialChart"></canvas>
+                    </div>
+                    <div class="metric-card">
+                        <div class="chart-header">
+                            <h4><i class="fas fa-users"></i> Segmentación de Clientes</h4>
+                        </div>
+                        <canvas id="customerChart"></canvas>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #DC2626;"></span>
+                                <span>Clientes Premium (40%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #10B981;"></span>
+                                <span>Clientes Regulares (45%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: rgba(255, 255, 255, 0.3);"></span>
+                                <span>Clientes Nuevos (15%)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Análisis Competitivo</h4>
+                        <div class="competitive-analysis" id="competitiveAnalysis">
+                            <!-- Se llenará dinámicamente -->
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Oportunidades de Mercado</h4>
+                        <div class="market-opportunities" id="marketOpportunities">
+                            <!-- Se llenará dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations Section -->
+            <div class="dashboard-section" id="recommendations">
+                <div class="section-header">
+                    <h2>Recomendaciones Estratégicas</h2>
+                </div>
+                <div class="recommendations-content" id="recommendationsContent">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Reports Section -->
+            <div class="dashboard-section" id="reports">
+                <div class="section-header">
+                    <h2>Reportes y Exportación</h2>
+                </div>
+                <div class="reports-content">
+                    <div class="report-options">
+                        <div class="report-card">
+                            <h4>Reporte Ejecutivo</h4>
+                            <p>Resumen completo para presentar a inversionistas</p>
+                            <button class="btn-primary" onclick="generateExecutiveReport()">
+                                <i class="fas fa-file-pdf"></i> Generar PDF
+                            </button>
+                        </div>
+                        <div class="report-card">
+                            <h4>Análisis Financiero</h4>
+                            <p>Proyecciones y métricas financieras detalladas</p>
+                            <button class="btn-primary" onclick="generateFinancialReport()">
+                                <i class="fas fa-chart-bar"></i> Generar Excel
+                            </button>
+                        </div>
+                        <div class="report-card">
+                            <h4>Plan de Acción</h4>
+                            <p>Roadmap estratégico con tareas específicas</p>
+                            <button class="btn-primary" onclick="generateActionPlan()">
+                                <i class="fas fa-tasks"></i> Generar Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    <div class="kpi-card satisfaction-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3 id="satisfactionKPI">4.2</h3>
+                            <p>Satisfacción Cliente</p>
+                            <span class="kpi-trend positive">
+                                <i class="fas fa-arrow-up"></i> +0.3
+                            </span>
+                        </div>
+                        <div class="satisfaction-stars" id="satisfactionStars">
+                            <i class="fas fa-star active"></i>
+                            <i class="fas fa-star active"></i>
+                            <i class="fas fa-star active"></i>
+                            <i class="fas fa-star active"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-row">
+                    <div class="chart-container main-chart">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-chart-line"></i> Proyección de Ingresos</h3>
+                            <div class="chart-controls">
+                                <button class="chart-btn active" data-period="6m">6M</button>
+                                <button class="chart-btn" data-period="1y">1A</button>
+                                <button class="chart-btn" data-period="2y">2A</button>
+                            </div>
+                        </div>
+                        <canvas id="revenueChart"></canvas>
+                        <div class="chart-insights">
+                            <div class="insight-item">
+                                <span class="insight-label">Tendencia:</span>
+                                <span class="insight-value positive">Crecimiento sostenido</span>
+                            </div>
+                            <div class="insight-item">
+                                <span class="insight-label">Próximo mes:</span>
+                                <span class="insight-value" id="nextMonthProjection">$0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-pie-chart"></i> Distribución de Ingresos</h3>
+                        </div>
+                        <canvas id="revenueDistributionChart"></canvas>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #DC2626;"></span>
+                                <span>Producto Principal (65%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #EF4444;"></span>
+                                <span>Servicios (25%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #B91C1C;"></span>
+                                <span>Otros (10%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Metrics Row -->
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-pie-chart"></i> Participación de Mercado</h3>
+                        </div>
+                        <canvas id="marketChart"></canvas>
+                        <div class="chart-insights">
+                            <div class="insight-item">
+                                <span class="insight-label">Tu posición:</span>
+                                <span class="insight-value" id="marketPosition">Creciendo</span>
+                            </div>
+                            <div class="insight-item">
+                                <span class="insight-label">Oportunidad:</span>
+                                <span class="insight-value positive">+25% potencial</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-heart"></i> Satisfacción del Cliente</h3>
+                        </div>
+                        <canvas id="satisfactionChart"></canvas>
+                        <div class="satisfaction-metrics">
+                            <div class="satisfaction-item">
+                                <span class="satisfaction-label">NPS Score:</span>
+                                <span class="satisfaction-value positive" id="npsScore">+42</span>
+                            </div>
+                            <div class="satisfaction-item">
+                                <span class="satisfaction-label">Retención:</span>
+                                <span class="satisfaction-value" id="retentionRate">87%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Analytics Row -->
+                <div class="analytics-row">
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-brain"></i> Análisis Predictivo IA</h3>
+                        <div class="prediction-content" id="aiPredictions">
+                            <div class="prediction-item">
+                                <div class="prediction-icon success">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                                <div class="prediction-text">
+                                    <h4>Oportunidad de Crecimiento</h4>
+                                    <p>Se detecta potencial de crecimiento del 40% en el próximo trimestre</p>
+                                </div>
+                                <div class="prediction-confidence">
+                                    <span>85% confianza</span>
+                                </div>
+                            </div>
+                            <div class="prediction-item">
+                                <div class="prediction-icon warning">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="prediction-text">
+                                    <h4>Alerta de Competencia</h4>
+                                    <p>Nuevo competidor detectado en tu segmento de mercado</p>
+                                </div>
+                                <div class="prediction-confidence">
+                                    <span>92% confianza</span>
+                                </div>
+                            </div>
+                            <div class="prediction-item">
+                                <div class="prediction-icon info">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="prediction-text">
+                                    <h4>Recomendación Estratégica</h4>
+                                    <p>Considera expandir a mercados B2B para maximizar ingresos</p>
+                                </div>
+                                <div class="prediction-confidence">
+                                    <span>78% confianza</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-users-cog"></i> Segmentación de Clientes</h3>
+                        <canvas id="customerSegmentChart"></canvas>
+                        <div class="segment-details">
+                            <div class="segment-item">
+                                <span class="segment-name">Empresas Grandes</span>
+                                <span class="segment-value">35%</span>
+                                <span class="segment-revenue">$1,750</span>
+                            </div>
+                            <div class="segment-item">
+                                <span class="segment-name">PyMEs</span>
+                                <span class="segment-value">45%</span>
+                                <span class="segment-revenue">$2,250</span>
+                            </div>
+                            <div class="segment-item">
+                                <span class="segment-name">Startups</span>
+                                <span class="segment-value">20%</span>
+                                <span class="segment-revenue">$1,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Summary -->
+                <div class="business-summary">
+                    <div class="summary-header">
+                        <h3><i class="fas fa-file-alt"></i> Resumen Ejecutivo Inteligente</h3>
+                        <div class="summary-actions">
+                            <button class="summary-btn" onclick="refreshSummary()">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <button class="summary-btn" onclick="exportSummary()">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="summary-content" id="businessSummaryContent">
+                        <div class="summary-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Generando análisis inteligente...</p>
+                        </div>
+                    </div>
+                    <div class="summary-footer">
+                        <div class="summary-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Última actualización:</span>
+                                <span class="stat-value" id="lastUpdate">Hace 2 minutos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Precisión IA:</span>
+                                <span class="stat-value">94.2%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Powered by:</span>
+                                <span class="stat-value huawei-badge">Huawei Cloud + Gemini AI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Section -->
+            <div class="dashboard-section" id="analysis">
+                <div class="section-header">
+                    <h2>Análisis de IA</h2>
+                </div>
+                <div class="analysis-content" id="analysisContent">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Metrics Section -->
+            <div class="dashboard-section" id="metrics">
+                <div class="section-header">
+                    <h2>Métricas Detalladas</h2>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h4>Rendimiento Financiero</h4>
+                        <canvas id="financialChart"></canvas>
+                    </div>
+                    <div class="metric-card">
+                        <div class="chart-header">
+                            <h4><i class="fas fa-users"></i> Segmentación de Clientes</h4>
+                        </div>
+                        <canvas id="customerChart"></canvas>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #DC2626;"></span>
+                                <span>Clientes Premium (40%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #10B981;"></span>
+                                <span>Clientes Regulares (45%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: rgba(255, 255, 255, 0.3);"></span>
+                                <span>Clientes Nuevos (15%)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Análisis Competitivo</h4>
+                        <div class="competitive-analysis" id="competitiveAnalysis">
+                            <!-- Se llenará dinámicamente -->
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Oportunidades de Mercado</h4>
+                        <div class="market-opportunities" id="marketOpportunities">
+                            <!-- Se llenará dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations Section -->
+            <div class="dashboard-section" id="recommendations">
+                <div class="section-header">
+                    <h2>Recomendaciones Estratégicas</h2>
+                </div>
+                <div class="recommendations-content" id="recommendationsContent">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Reports Section -->
+            <div class="dashboard-section" id="reports">
+                <div class="section-header">
+                    <h2>Reportes y Exportación</h2>
+                </div>
+                <div class="reports-content">
+                    <div class="report-options">
+                        <div class="report-card">
+                            <h4>Reporte Ejecutivo</h4>
+                            <p>Resumen completo para presentar a inversionistas</p>
+                            <button class="btn-primary" onclick="generateExecutiveReport()">
+                                <i class="fas fa-file-pdf"></i> Generar PDF
+                            </button>
+                        </div>
+                        <div class="report-card">
+                            <h4>Análisis Financiero</h4>
+                            <p>Proyecciones y métricas financieras detalladas</p>
+                            <button class="btn-primary" onclick="generateFinancialReport()">
+                                <i class="fas fa-chart-bar"></i> Generar Excel
+                            </button>
+                        </div>
+                        <div class="report-card">
+                            <h4>Plan de Acción</h4>
+                            <p>Roadmap estratégico con tareas específicas</p>
+                            <button class="btn-primary" onclick="generateActionPlan()">
+                                <i class="fas fa-tasks"></i> Generar Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Procesando datos con IA...</p>
+        </div>
+    </div>
+
+    <script src="crm-script.js"></script>
+</body>
+</html>

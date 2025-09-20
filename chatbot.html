@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS CEO - Chat Empresarial</title>
+    <link rel="stylesheet" href="chatbot-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="chat-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logo.png" alt="NEXUS CEO" class="header-logo">
+                <div class="logo-text">
+                    <span class="logo-main">NEXUS</span>
+                    <span class="logo-accent">CEO</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="action-btn" onclick="openCRM()">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Ver CRM</span>
+                </button>
+                <button class="action-btn logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Salir</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Chat Container -->
+    <div class="chat-container">
+        <!-- Sidebar -->
+        <div class="chat-sidebar">
+            <div class="sidebar-header">
+                <h3>Análisis Empresarial</h3>
+                <p>Responde 5 preguntas clave</p>
+            </div>
+            
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">0/5 completadas</span>
+            </div>
+
+            <div class="questions-list" id="questionsList">
+                <div class="question-item" data-question="1">
+                    <div class="question-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="question-text">
+                        <h4>Modelo de Negocio</h4>
+                        <p>¿Cuál es tu modelo de negocio principal?</p>
+                    </div>
+                    <div class="question-status">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                </div>
+
+                <div class="question-item" data-question="2">
+                    <div class="question-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="question-text">
+                        <h4>Mercado Objetivo</h4>
+                        <p>¿Quién es tu cliente ideal?</p>
+                    </div>
+                    <div class="question-status">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                </div>
+
+                <div class="question-item" data-question="3">
+                    <div class="question-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="question-text">
+                        <h4>Ingresos Actuales</h4>
+                        <p>¿Cuáles son tus ingresos mensuales?</p>
+                    </div>
+                    <div class="question-status">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                </div>
+
+                <div class="question-item" data-question="4">
+                    <div class="question-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="question-text">
+                        <h4>Objetivos de Crecimiento</h4>
+                        <p>¿Cuáles son tus metas a 12 meses?</p>
+                    </div>
+                    <div class="question-status">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                </div>
+
+                <div class="question-item" data-question="5">
+                    <div class="question-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="question-text">
+                        <h4>Principales Desafíos</h4>
+                        <p>¿Cuál es tu mayor obstáculo actual?</p>
+                    </div>
+                    <div class="question-status">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-section" id="summarySection" style="display: none;">
+                <button class="summary-btn" onclick="generateSummary()">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Generar Resumen</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-main">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>¡Bienvenido a NEXUS CEO! Soy tu asistente de IA empresarial. Para brindarte el mejor análisis, necesito conocer más sobre tu negocio.</p>
+                        <p>Responderemos 5 preguntas clave que me permitirán crear un análisis personalizado y recomendaciones específicas para tu empresa.</p>
+                        <p><strong>¿Empezamos con la primera pregunta?</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="input-wrapper">
+                    <input type="text" id="chatInput" placeholder="Escribe tu respuesta..." disabled>
+                    <button id="sendButton" onclick="sendMessage()" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="quick-actions" id="quickActions">
+                    <button class="quick-btn" onclick="startQuestionnaire()">
+                        <i class="fas fa-play"></i>
+                        Comenzar Análisis
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Análisis Empresarial Completo</h3>
+                <button class="modal-close" onclick="closeSummaryModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="summaryContent">
+                <!-- El contenido se generará dinámicamente -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeSummaryModal()">Cerrar</button>
+                <button class="btn-primary" onclick="openCRM()">Ver CRM Completo</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="chatbot-script.js"></script>
+</body>
+</html>
